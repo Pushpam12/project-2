@@ -1,0 +1,12 @@
+{
+  "name": "youtube",
+  "version": "1.0.0",
+  "description": "The simple youtube backend project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "Shubham",
+  "license": "ISC"
+}
