@@ -12,7 +12,7 @@ const userSchema = new Schema({
              index: true,
              lowercase : true,
              trim: true,
-             minLength : 3
+             minLength : 3,
         },
         email : {
              type : String,
@@ -51,8 +51,8 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function(next){
     if (! this.isModified("password")) return next();
-
-    await bcrypt.hash(this.password, 10);
+    const hashedPass = await bcrypt.hash(this.password, 10);
+    this.password = hashedPass
     next();
 })
 
@@ -81,6 +81,7 @@ userSchema.methods.generateRefreshToken = async function(){
             { expiresIn: "10h"}
         )
 }
+
 
 const User = new mongoose.model("User", userSchema);
 module.exports = User;
